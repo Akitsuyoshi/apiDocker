@@ -1,0 +1,14 @@
+api:
+  build: ./api
+  ports:
+    - 3000:3000
+  volumes:
+    - ./api:/go/src/github.com/Akitsuyoshi/apiDocker/api
+  links:
+    - database
+  environment:
+    - DB_NAME=project
+
+database:
+  image: mongo:30
+  command: mongod --smallfiles --quiet --logpath=/dev/null
