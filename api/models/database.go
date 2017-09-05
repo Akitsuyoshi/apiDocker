@@ -7,7 +7,7 @@ import (
 )
 
 func Database() *mgo.Session {
-	session, err := mgo.Dial("project_database_1")
+	session, err := mgo.Dial("apiDocker_database_1")
 
 	if err != nil {
 		panic(err)
