@@ -10,5 +10,5 @@ api:
     - DB_NAME=project
 
 database:
-  image: mongo:30
+  image: mongo:3.0
   command: mongod --smallfiles --quiet --logpath=/dev/null

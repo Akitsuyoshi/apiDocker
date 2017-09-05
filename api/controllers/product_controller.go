@@ -16,13 +16,12 @@ type (
 )
 
 func NewProductController(s *mgo.Session) *ProductController {
-	return &ProductController(s)
+	return &ProductController{s}
 }
 
 func (pc *ProductController) GetAllProducts(r render.Render) {
 	products := []models.Product{}
 	session := pc.session.DB(os.Getenv("DB_NAME")).C("products")
-
 	err := session.Find(nil).Limit(100).All(&products)
 
 	if err != nil {

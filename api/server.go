@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	m := martini.Classic()
 	m.Map(models.Database())
 	m.Use(render.Renderer())
@@ -16,6 +17,6 @@ func main() {
 	pc := controllers.NewProductController(models.Database())
 
 	m.Get("/products", binding.Bind(models.Product{}), pc.GetAllProducts)
-	m.Post("/products".binding.Bind(models.Product{}), pc.PostProduct)
+	m.Post("/products", binding.Bind(models.Product{}), pc.PostProduct)
 	m.Run()
 }
