@@ -7,7 +7,7 @@ api:
   links:
     - database
   environment:
-    - DB_NAME=project
+    - DB_NAME=apiDocker
 
 database:
   image: mongo:3.0
