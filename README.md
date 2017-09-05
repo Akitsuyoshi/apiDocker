@@ -1,7 +1,12 @@
 # apiDocker
 
+prerequisite
+1. installed Golang
+2. somewhat familiarity with Docker
+
 to begin this api, please follow this lines.
-```$ cd $GOPATH/src
+```
+$ cd $GOPATH/src
 $ mkdir github.com/Akitsuyoshi/apiDocker
 $ cd github.com/Akitsuyoshi/apiDocker
 $ git install https://github.com/Akitsuyoshi/apiDocker
