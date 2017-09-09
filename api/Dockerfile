@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:1.8.3
 
 # Copy the local package files to the container’s workspace.
 ADD . /go/src/github.com/Akitsuyoshi/apiDocker/api
