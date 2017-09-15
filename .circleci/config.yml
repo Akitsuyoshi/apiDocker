@@ -26,7 +26,6 @@ jobs:
 
       #- run: go test -v ./...
 
-      - setup_remote_docker
       - run:
           name: Install Docker Compose
           command: |
