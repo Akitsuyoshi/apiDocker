@@ -22,9 +22,9 @@ jobs:
       - checkout
 
       # specify any bash command here prefixed with `run: `
-      - run: go get -v -t -d ./...
+      #- run: go get -v -t -d ./...
 
-      - run: go test -v ./...
+      #- run: go test -v ./...
 
       - setup_remote_docker
       - run:
@@ -41,4 +41,5 @@ jobs:
           name: Validate service is working
           command: |
             docker-compose up -d
+            sleep 6
             curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"title":"testtitle","description":"test_post","price":123}' http://localhost:3000/products
