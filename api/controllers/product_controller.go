@@ -10,15 +10,18 @@ import (
 )
 
 type (
+	// ProductController serves session for mongoDB
 	ProductController struct {
 		session *mgo.Session
 	}
 )
 
+// NewProductController return ProductController with itself implemented method
 func NewProductController(s *mgo.Session) *ProductController {
 	return &ProductController{s}
 }
 
+// GetAllProducts shows all products from db
 func (pc *ProductController) GetAllProducts(r render.Render) {
 	products := []models.Product{}
 	session := pc.session.DB(os.Getenv("DB_NAME")).C("products")
@@ -31,6 +34,7 @@ func (pc *ProductController) GetAllProducts(r render.Render) {
 	r.JSON(200, products)
 }
 
+// PostProduct return request to post data written in db
 func (pc *ProductController) PostProduct(product models.Product, r render.Render) {
 	session := pc.session.DB(os.Getenv("DB_NAME")).C("products")
 

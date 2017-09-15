@@ -6,6 +6,7 @@ import (
 	"labix.org/v2/mgo"
 )
 
+// Database deals with mongoDB to get connect
 func Database() *mgo.Session {
 	session, err := mgo.Dial("apidocker_database_1")
 
