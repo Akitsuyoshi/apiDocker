@@ -34,6 +34,7 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
 
+      - run: sudo service docker start
       - run: docker-compose build
 
       - run:
