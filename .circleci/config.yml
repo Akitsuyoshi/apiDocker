@@ -26,6 +26,7 @@ jobs:
 
       #- run: go test -v ./...
 
+      - setup_remote_docker
       - run:
           name: Install Docker Compose
           command: |
@@ -34,7 +35,6 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
 
-      - run: sudo service docker start
       - run: docker-compose build
 
       - run:
@@ -45,5 +45,5 @@ jobs:
       - run:
           name: Validate service is working
           command: |
-            sleep 7
+            docker exec -it apidocker_api_1 bash
             curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"title":"testtitle","description":"test_post","price":123}' http://localhost:3000/products
