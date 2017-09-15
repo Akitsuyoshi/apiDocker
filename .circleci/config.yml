@@ -7,8 +7,6 @@ jobs:
     docker:
       # specify the version
       - image: circleci/golang:1.8
-      # the container for the db service
-      - image: circleci/mongo:3.0
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -25,17 +23,20 @@ jobs:
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
-      - run:
-          name: Waiting for mongo to be ready
-          command: |
-            for i in `seq 1 10`;
-            do
-              nc -z localhost 5432 && echo Success && exit 0
-              echo -n .
-              sleep 1
-            done
-            echo Failed waiting for mongo && exit 1
+
+      - run: go vet ./...
       - run: go test -v ./...
+
+      - run:
+        name: Install Docker Compose
+        command: |
+          set -x
+          curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+          chmod +x /usr/local/bin/docker-compose
+
+      - setup_remote_docker
+      - run: docker-compose build
+      - run: docker-compose up -d
 
       - run:
           name: Validate service is working
