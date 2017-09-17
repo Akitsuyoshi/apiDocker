@@ -42,8 +42,7 @@ jobs:
           name: make image run
           command: |
             docker-compose build
-            docker-compose up
-          background: true
+            docker-compose up　-d
 
       - run:
           name: Validate service is working
