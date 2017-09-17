@@ -43,6 +43,7 @@ jobs:
           command: |
             docker-compose build
             docker-compose up
+          background: true
 
       - run:
           name: Validate service is working
